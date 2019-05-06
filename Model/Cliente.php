@@ -30,6 +30,10 @@ class Cliente {
         $data = strtotime($this->dataNasc);
         return date('d/m/Y',$data);
     }
+    public function getDataNascUnMask() {
+        return $this->dataNasc;
+        
+    }
     public function setDataNasc(date $dataNasc) {
         return $this->dataNasc = $dataNasc;
     }

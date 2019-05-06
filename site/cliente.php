@@ -62,8 +62,8 @@
                     <td><?php echo $cliente->getCPF(); ?></td>
                     <td><?php echo $cliente->getDataNasc(); ?></td>
                     <td class="actions">
-                        <a href="#" class="btn btn-dark">Alterar</a>
-                        <a href="#" class="btn btn-danger" onclick="deletarModal('<?php echo $cliente->getId() ?>');">Excluir</a>
+                        <a href="clienteEdit.php?cliente=<?= $cliente->getId(); ?>" class="btn btn-dark">Alterar</a>
+                        <a href="#" class="btn btn-danger" onclick="deletarModal('<?php echo $cliente->getId(); ?>');">Excluir</a>
                     </td> 
                 </tr>
             <?php endforeach; ?>

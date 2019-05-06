@@ -50,6 +50,10 @@ class ClienteController {
         return $this->clienteModel->listarIdadeConsoantes();
     }
 
+    public function buscarCliente($id) {
+        return $this->clienteModel->buscar($id);
+    }
+
     public function deletarCliente($id) {
         return $this->clienteModel->excluir($id);
     }

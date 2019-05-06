@@ -61,6 +61,46 @@ class ClienteModel {
         return $result;
     }
 
+    public function incluir(Cliente $cliente) {
+        $query = "INSERT INTO clientes (nome, cpf, dataNasc) VALUES (:nome, :cpf, :dataNasc)";
+        $statement = $this->conn->getConexao()->prepare($query);
+        $statement->bindParam(":nome", $cliente->getNome());
+        $statement->bindParam(":cpf", $cliente->getCPF());
+        $statement->bindParam(":dataNasc", $cliente->getDataNascUnMask());
+
+        if ($statement->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function alterar(Cliente $cliente) {
+        $query = "UPDATE clientes SET nome = :nome, cpf = :cpf, dataNasc = :dataNasc WHERE id = :id";
+        $statement = $this->conn->getConexao()->prepare($query);
+        $statement->bindParam(":id", $cliente->getId());
+        $statement->bindParam(":nome", $cliente->getNome());
+        $statement->bindParam(":cpf", $cliente->getCPF());
+        $statement->bindParam(":dataNasc", $cliente->getDataNascUnMask());
+
+        if ($statement->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function buscar($id) {
+        $query = "SELECT * FROM clientes WHERE id = :id";
+        $statement = $this->conn->getConexao()->prepare($query);
+        $statement->bindParam(":id", $id);
+        $statement->execute();
+        
+        $result = $statement->fetchAll(PDO::FETCH_CLASS, "Cliente");
+
+        return $result[0];
+    }
+
     public function excluir($id) {
         $query = "delete from clientes where id = :id";
         $statement = $this->conn->getConexao()->prepare($query);
